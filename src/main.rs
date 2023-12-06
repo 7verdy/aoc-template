@@ -28,8 +28,8 @@ fn part_two(filename: String) -> u64 {
 
 fn main() {
     let filename = "input.txt".to_string();
-    let day = 6; // TO MODIFY
-    let year = 2023; // TO MODIFY
+    let day = 0; // TO MODIFY
+    let year = 2020; // TO MODIFY
     let input_url = format!("https://adventofcode.com/{}/day/{}/input", year, day);
     let _ = aoc_utils::dl_file_from_url(input_url);
 
@@ -38,6 +38,4 @@ fn main() {
 
     let _ = aoc_utils::upload_solution(year, day, 1, p1_res.to_string());
     let _ = aoc_utils::upload_solution(year, day, 2, p2_res.to_string());
-    let output = read_to_string("output.txt").expect("Something went wrong reading the file");
-    println!("{}", output);
 }

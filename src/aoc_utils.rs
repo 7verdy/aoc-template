@@ -39,11 +39,14 @@ pub fn upload_solution(year: u32, day: u32, part: u32, answer: String) -> Result
     let client = reqwest::blocking::Client::builder()
         .cookie_provider(jar.into())
         .build()?;
-    let mut response = client.post(url)
+    let response = client
+        .post(url)
         .form(&[("level", part.to_string()), ("answer", answer)])
         .send()?;
-    println!("{:?}", response);
-    let mut file = File::create("output.txt")?;
-    copy(&mut response, &mut file)?;
+    if response.text()?.contains("That's the right answer!") {
+        println!("[*] Correct answer!");
+    } else {
+        println!("[!] Wrong answer!");
+    }
     Ok(())
 }
